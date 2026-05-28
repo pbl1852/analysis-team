@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>From Viewer Reactions to Content Strategy: A Data-Driven Plan for StreamKUS</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -12,24 +12,21 @@
       --surface: #ffffff;
       --surface-2: #f7f6f3;
       --ink: #141210;
-      --ink-muted: #5c5855;
-      --ink-faint: #a8a39d;
-      --accent: #9e4a28;
-      --accent-warm: #c4724e;
-      --accent-cool: #2e5c6e;
+      --muted: #5c5855;
+      --faint: #9c9790;
       --gold: #b8952a;
-      --gold-light: #d4af5a;
-      --border: rgba(20,18,16,0.09);
-      --border-gold: rgba(184,149,42,0.25);
-      --shadow-sm: 0 2px 10px rgba(20,18,16,0.07);
-      --shadow-md: 0 8px 36px rgba(20,18,16,0.11);
-      --shadow-lg: 0 24px 72px rgba(20,18,16,0.16);
-      --radius: 14px;
-      --radius-sm: 8px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --gold-light: #d7b85d;
+      --accent: #9e4a28;
+      --blue: #1c3040;
+      --border: rgba(20,18,16,0.1);
+      --border-gold: rgba(184,149,42,0.28);
+      --shadow: 0 10px 34px rgba(20,18,16,0.1);
+      --shadow-lg: 0 24px 70px rgba(20,18,16,0.16);
+      --radius: 18px;
+      --radius-sm: 10px;
     }
 
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -40,11 +37,13 @@
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(184,149,42,0.08), transparent 34%),
+        radial-gradient(circle at left 35%, rgba(158,74,40,0.05), transparent 28%),
+        var(--bg);
       color: var(--ink);
-      font-size: 16px;
-      line-height: 1.7;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -52,23 +51,21 @@
       position: fixed;
       top: 0;
       left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--accent-warm));
-      width: 0%;
-      z-index: 1000;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 8px rgba(184,149,42,0.4);
+      width: 0;
+      height: 3px;
+      z-index: 9999;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--accent));
+      box-shadow: 0 0 12px rgba(184,149,42,0.45);
     }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 900;
+      z-index: 1000;
       background: rgba(240,238,234,0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border-gold);
-      padding: 0 max(24px, calc(50% - 600px));
+      padding: 0 max(22px, calc(50% - 600px));
     }
 
     nav ul {
@@ -83,26 +80,22 @@
       display: none;
     }
 
-    nav ul li a {
+    nav a {
       display: block;
-      padding: 15px 16px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color var(--transition);
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: var(--gold);
-    }
-
-    nav ul li a.active {
+      padding: 15px 14px;
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--gold);
     }
 
     main {
@@ -112,227 +105,172 @@
     }
 
     section {
-      margin-bottom: 72px;
+      margin-bottom: 78px;
+      scroll-margin-top: 72px;
     }
 
     #hero {
-      min-height: 82vh;
+      min-height: 84vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      padding: 80px 0 64px;
       position: relative;
-      overflow: hidden;
+      padding: 80px 0 60px;
     }
 
     #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 700px 500px at 85% 15%, rgba(184,149,42,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 500px 400px at 5% 85%, rgba(46,92,110,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 400px 300px at 50% 50%, rgba(158,74,40,0.03) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    #hero::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 50%;
-      transform: translateY(-50%);
       width: 2px;
-      height: 120px;
+      height: 130px;
+      transform: translateY(-50%);
       background: linear-gradient(180deg, transparent, var(--gold), transparent);
-      border-radius: 2px;
     }
 
     .hero-eyebrow {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 12px;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 30px;
     }
 
     .hero-tag {
-      display: inline-block;
-      background: transparent;
+      border: 1px solid var(--border-gold);
       color: var(--gold);
+      padding: 7px 16px;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 6px 16px;
-      border: 1px solid var(--border-gold);
-      border-radius: 2px;
+      background: rgba(255,255,255,0.35);
     }
 
     .hero-year {
+      color: var(--faint);
       font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--ink-faint);
-      font-weight: 400;
+      letter-spacing: 0.12em;
+      font-weight: 700;
     }
 
     .hero-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      line-height: 1.12;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      max-width: 780px;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(2.45rem, 5.2vw, 4.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      max-width: 870px;
+      margin-bottom: 24px;
     }
 
     .hero-title em {
-      font-style: italic;
       color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 28px;
     }
 
     .hero-rule {
-      width: 64px;
+      width: 70px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 24px 0 32px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 28px;
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
     }
 
     .team-chip {
-      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(247,246,243,0.72));
-      border: 1px solid rgba(184,149,42,0.34);
-      border-radius: 999px;
       padding: 10px 18px 10px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: 0.02em;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(247,246,243,0.72));
+      border: 1px solid rgba(184,149,42,0.34);
       box-shadow: 0 6px 22px rgba(20,18,16,0.08);
-      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition), background var(--transition);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .team-chip::before {
-      content: '';
+      content: "";
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--accent-warm));
+      background: linear-gradient(135deg, var(--gold), var(--accent));
       box-shadow: 0 0 0 4px rgba(184,149,42,0.12);
-      flex-shrink: 0;
-    }
-
-    .team-chip:hover {
-      box-shadow: 0 12px 34px rgba(20,18,16,0.14);
-      transform: translateY(-2px);
-      border-color: var(--gold);
-      background: #ffffff;
     }
 
     .section-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
     .section-label::after {
-      content: '';
-      flex: 1;
-      max-width: 40px;
+      content: "";
+      width: 42px;
       height: 1px;
       background: var(--gold-light);
-      opacity: 0.5;
+      opacity: 0.65;
     }
 
     h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(1.7rem, 3vw, 2.55rem);
       line-height: 1.2;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 30px;
     }
 
     h3 {
-      font-family: 'DM Serif Display', serif;
+      font-family: "DM Serif Display", serif;
       font-size: 1.25rem;
-      color: var(--ink);
+      line-height: 1.3;
       margin-bottom: 12px;
-      letter-spacing: -0.01em;
+    }
+
+    h4 {
+      font-size: 14px;
+      color: var(--gold);
+      margin: 18px 0 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 14px;
     }
 
     .card {
-      background: var(--surface);
+      background: rgba(255,255,255,0.92);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 36px;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow var(--transition), transform var(--transition);
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-3px);
-    }
-
-    .card p,
-    .card li {
-      color: var(--ink-muted);
-      font-size: 15px;
-    }
-
-    .card ul,
-    .card ol {
-      padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      padding: 34px;
+      box-shadow: var(--shadow);
     }
 
     .dark-card {
-      background: linear-gradient(140deg, #1a1714 0%, #2a2520 100%);
+      background: linear-gradient(140deg, #1a1714 0%, #2b241f 100%);
       color: #fff;
       border-color: transparent;
       position: relative;
@@ -340,14 +278,13 @@
     }
 
     .dark-card::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-      opacity: 0.6;
     }
 
     .dark-card p,
@@ -362,99 +299,89 @@
       font-style: italic;
     }
 
-    .report-copy p {
-      margin-bottom: 18px;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
     }
 
-    .report-copy p:last-child {
-      margin-bottom: 0;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
     }
 
     .table-wrap {
-      margin: 28px 0 24px;
+      margin: 26px 0;
       overflow-x: auto;
       border-radius: var(--radius-sm);
-      border: 1px solid rgba(184,149,42,0.24);
+      border: 1px solid rgba(184,149,42,0.28);
       background: rgba(255,255,255,0.04);
     }
 
-    .content-table {
+    table {
       width: 100%;
       border-collapse: collapse;
       min-width: 620px;
     }
 
-    .content-table th {
+    th {
       padding: 14px 18px;
+      color: var(--gold-light);
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(184,149,42,0.24);
       text-align: left;
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold-light);
-      background: rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(184,149,42,0.22);
     }
 
-    .content-table td {
+    td {
       padding: 16px 18px;
-      color: rgba(255,255,255,0.78);
-      font-size: 14px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
     }
 
-    .content-table tr:last-child td {
+    tr:last-child td {
       border-bottom: none;
     }
 
-    .content-table td:first-child {
+    td:first-child {
       color: #f4d98a;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
     }
 
     .stat-card {
       text-align: center;
-      padding: 32px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-
-    .stat-card:hover::after {
-      opacity: 1;
+      padding: 30px 20px;
     }
 
     .stat-icon {
       font-size: 1.8rem;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.6rem;
+      font-family: "DM Serif Display", serif;
+      font-size: 2.35rem;
       color: var(--ink);
       line-height: 1;
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
     .stat-label {
-      font-size: 12px;
-      color: var(--ink-faint);
-      font-weight: 500;
-      letter-spacing: 0.06em;
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
@@ -464,219 +391,189 @@
     }
 
     .method-card::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 3px;
       height: 100%;
-      background: linear-gradient(180deg, var(--gold), var(--accent-warm));
-      border-radius: 3px 0 0 3px;
+      background: linear-gradient(180deg, var(--gold), var(--accent));
     }
 
     .method-badge {
       display: inline-block;
-      background: transparent;
+      padding: 4px 12px;
       border: 1px solid var(--border-gold);
-      border-radius: 2px;
-      padding: 3px 12px;
+      color: var(--gold);
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold);
       margin-bottom: 14px;
     }
 
     .prompt-box {
-      margin: 22px 0;
+      margin: 24px 0;
       padding: 22px;
       border-radius: var(--radius-sm);
-      background: rgba(20,18,16,0.04);
+      background: #f3f1ec;
       border: 1px solid var(--border);
-      color: var(--ink-muted);
-      font-size: 14px;
-      line-height: 1.8;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
       white-space: pre-wrap;
+      overflow-x: auto;
     }
 
-    .genre-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+    .finding-card {
+      min-height: 100%;
     }
 
-    .genre-card {
-      border-radius: var(--radius);
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow var(--transition), transform var(--transition);
-    }
-
-    .genre-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-5px);
-    }
-
-    .genre-card.romance {
+    .finding-card.romance {
       background: linear-gradient(145deg, #f9e8ec 0%, #f2d4db 100%);
-      border: 1px solid rgba(201,125,138,0.18);
     }
 
-    .genre-card.thriller {
-      background: linear-gradient(145deg, #e6eaed 0%, #d4dce2 100%);
-      border: 1px solid rgba(90,110,122,0.18);
-    }
-
-    .genre-card.drama {
+    .finding-card.slice {
       background: linear-gradient(145deg, #ede8de 0%, #e0d5c0 100%);
-      border: 1px solid rgba(138,125,90,0.18);
     }
 
-    .genre-card.comedy {
+    .finding-card.thriller {
+      background: linear-gradient(145deg, #e6eaed 0%, #d4dce2 100%);
+    }
+
+    .finding-card.comedy {
       background: linear-gradient(145deg, #e2ede4 0%, #cce4ce 100%);
-      border: 1px solid rgba(106,158,112,0.18);
     }
 
-    .genre-dot {
+    .finding-icon {
       width: 44px;
       height: 44px;
       border-radius: 50%;
+      background: rgba(255,255,255,0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 16px;
-      background: rgba(255,255,255,0.45);
+      font-size: 1.35rem;
+      margin-bottom: 14px;
     }
 
-    .genre-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
-
-    .genre-sub {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      opacity: 0.45;
-    }
-
-    .genre-card p {
-      font-size: 14px;
-      line-height: 1.75;
-      opacity: 0.72;
-    }
-
-    .placeholder-box {
-      margin-top: 16px;
-      background: rgba(255,255,255,0.45);
-      border: 1px dashed rgba(0,0,0,0.1);
-      border-radius: var(--radius-sm);
-      padding: 22px;
-      text-align: center;
-      font-size: 12px;
-      font-style: italic;
-      opacity: 0.5;
-    }
-
-    .evidence-card {
-      border-left: 3px solid var(--gold);
-      background: var(--surface-2);
-    }
-
-    .quote-mark {
-      font-family: 'DM Serif Display', serif;
-      font-size: 5rem;
-      line-height: 0.6;
-      color: var(--gold);
-      opacity: 0.15;
-      float: left;
-      margin-right: 12px;
-      margin-top: 8px;
-    }
-
-    .evidence-placeholder {
-      background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: var(--radius-sm);
-      padding: 28px;
-      text-align: center;
-      color: var(--ink-faint);
-      font-size: 13px;
-      font-style: italic;
+    .target {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.5);
+      color: rgba(20,18,16,0.62);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
     }
 
     .proposal-card {
-      display: flex;
+      display: grid;
+      grid-template-columns: 54px 1fr;
       gap: 22px;
       align-items: flex-start;
     }
 
     .proposal-num {
-      flex-shrink: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 3px;
-      background: var(--ink);
-      color: var(--gold-light);
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
+      background: var(--ink);
+      color: var(--gold-light);
+      font-family: "DM Serif Display", serif;
+      font-size: 1.35rem;
+      border: 1px solid rgba(184,149,42,0.35);
+    }
+
+    .meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+
+    .meta-list span {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
       font-weight: 700;
-      border: 1px solid rgba(184,149,42,0.3);
+    }
+
+    .episode-list {
+      margin: 14px 0 16px;
+      padding-left: 18px;
+    }
+
+    .episode-list li {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .reason-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border-left: 3px solid var(--gold);
+    }
+
+    .reason-box p {
+      margin-bottom: 0;
     }
 
     .limit-item {
       display: flex;
       gap: 16px;
-      align-items: flex-start;
-      padding: 20px 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--border-gold);
+      padding: 20px 22px;
       border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.86);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      margin-bottom: 12px;
     }
 
     .limit-icon {
-      flex-shrink: 0;
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: rgba(184,149,42,0.08);
+      background: rgba(184,149,42,0.09);
       border: 1px solid var(--border-gold);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      flex-shrink: 0;
     }
 
     .conclusion-card {
       background: linear-gradient(140deg, #1c3040 0%, #0e2030 100%);
       color: #fff;
       border: none;
-      position: relative;
-      overflow: hidden;
     }
 
     .conclusion-card p {
-      color: rgba(255,255,255,0.75);
-      font-size: 15px;
+      color: rgba(255,255,255,0.78);
+      font-size: 16px;
+      line-height: 1.9;
     }
 
     .ref-item {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--ink-muted);
       display: flex;
       gap: 14px;
-      align-items: flex-start;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      word-break: break-all;
     }
 
     .ref-item:last-child {
@@ -684,39 +581,36 @@
     }
 
     .ref-num {
-      flex-shrink: 0;
-      font-size: 10px;
-      font-weight: 700;
+      min-width: 28px;
       color: var(--gold);
-      min-width: 24px;
+      font-weight: 800;
+      font-size: 11px;
       letter-spacing: 0.06em;
-      padding-top: 2px;
     }
 
     footer {
       text-align: center;
       padding: 44px 24px;
       border-top: 1px solid var(--border-gold);
-      color: var(--ink-faint);
+      color: var(--faint);
       font-size: 12px;
       letter-spacing: 0.04em;
-    }
-
-    footer strong {
-      color: var(--ink-muted);
-      font-weight: 600;
     }
 
     .footer-rule {
       width: 32px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
       margin: 0 auto 16px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    footer strong {
+      color: var(--muted);
     }
 
     @media (max-width: 640px) {
       main {
-        padding: 0 16px 60px;
+        padding: 0 16px 70px;
       }
 
       .card {
@@ -729,24 +623,23 @@
         grid-template-columns: 1fr;
       }
 
+      .proposal-card {
+        grid-template-columns: 1fr;
+      }
+
       .hero-title {
-        font-size: clamp(2.1rem, 10vw, 3rem);
+        font-size: clamp(2rem, 10vw, 3rem);
       }
 
-      nav ul li a {
-        padding: 14px 12px;
-        font-size: 11px;
-      }
-
-      .content-table {
-        min-width: 560px;
+      nav a {
+        padding: 14px 11px;
+        font-size: 10px;
       }
     }
   </style>
 </head>
 
 <body>
-
 <div id="progress-bar"></div>
 
 <nav>
@@ -755,7 +648,6 @@
     <li><a href="#data">Data</a></li>
     <li><a href="#methods">Methods</a></li>
     <li><a href="#findings">Findings</a></li>
-    <li><a href="#evidence">Evidence</a></li>
     <li><a href="#proposals">Proposals</a></li>
     <li><a href="#limitations">Limitations</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
@@ -772,8 +664,14 @@
     </div>
 
     <h1 class="hero-title">
-      From Viewer Reactions<br>to <em>Content Strategy</em>:<br>A Data-Driven Plan for StreamKUS
+      From Viewer Reactions<br>
+      to <em>Content Strategy</em>:<br>
+      A Data-Driven Plan for StreamKUS
     </h1>
+
+    <p class="hero-subtitle">
+      A genre-based analysis of viewer reactions to YouTube and Netflix content, designed to guide StreamKUS’s first original content strategy.
+    </p>
 
     <div class="hero-rule"></div>
 
@@ -789,7 +687,7 @@
     <p class="section-label">01 · Introduction</p>
     <h2>Why This Analysis Matters</h2>
 
-    <div class="card dark-card report-copy">
+    <div class="card dark-card">
       <p>
         StreamKUS is a new media company preparing to release its first original content on YouTube and Netflix. Since audience preferences change quickly, relying only on intuition can be risky. Therefore, this project uses a data-driven approach to identify what kinds of genres, themes, and story elements appeal to viewers.
       </p>
@@ -799,7 +697,7 @@
       </p>
 
       <div class="table-wrap">
-        <table class="content-table">
+        <table>
           <thead>
             <tr>
               <th>Genre</th>
@@ -809,19 +707,19 @@
           <tbody>
             <tr>
               <td>Romance</td>
-              <td>Single’s Inferno, When Life Gives You Tangerines</td>
+              <td>솔로지옥, 폭싹 속았수다</td>
             </tr>
             <tr>
-              <td>Thriller / Crime</td>
-              <td>Squid Game, Parasyte</td>
+              <td>Thriller</td>
+              <td>오징어게임2/3, 기생수</td>
             </tr>
             <tr>
-              <td>Human / Social Documentary Drama / Slice of Life</td>
-              <td>There Are No Bad Dogs in the World, The Trauma Code</td>
+              <td>Slice of Life</td>
+              <td>세상에 나쁜 개는 없다, 중증외상센터</td>
             </tr>
             <tr>
               <td>Comedy</td>
-              <td>SNL Korea, Shortbox</td>
+              <td>SNL, 숏박스</td>
             </tr>
           </tbody>
         </table>
@@ -840,8 +738,8 @@
     <div class="grid-4" style="margin-bottom: 24px;">
       <div class="card stat-card">
         <div class="stat-icon">💬</div>
-        <div class="stat-num">—</div>
-        <div class="stat-label">Total Reviews</div>
+        <div class="stat-num">User</div>
+        <div class="stat-label">Audience Reviews</div>
       </div>
 
       <div class="card stat-card">
@@ -863,7 +761,7 @@
       </div>
     </div>
 
-    <div class="card report-copy">
+    <div class="card">
       <p>
         We picked 4 different genres: romance, slice of life, thriller, and comedy, and picked 2 shows from each genre to analyze. The reason we divided our analysis targets into genres was because we would get a better understanding of what appeals more to what audience, and for what reason. We picked these 4 genres because they are historically among the most popular genres, and we thought that this would help us get a better idea for planning content.
       </p>
@@ -891,7 +789,7 @@
         <span class="method-badge">Method 01</span>
         <h3>Sentiment Analysis</h3>
         <p>
-          We used Colab to analyze the sentiment of the collected text data.
+          We collected the sentiment analysis of the collected text using Colab.
         </p>
       </div>
 
@@ -899,7 +797,7 @@
         <span class="method-badge">Method 02</span>
         <h3>AI-Assisted Review Analysis</h3>
         <p>
-          Gemini 3.1 Flash-Lite Preview was used to summarize audience reactions, key themes, and repeated review patterns.
+          Gemini 3.1 Flash-Lite Preview was used to generate review summaries, key themes, positive points, negative points, and keyword lists.
         </p>
       </div>
 
@@ -907,17 +805,17 @@
         <span class="method-badge">Method 03</span>
         <h3>Genre-Based Strategy</h3>
         <p>
-          Positive and negative points were compared by genre and show to decide what StreamKUS should do and avoid.
+          We compared the main positive and negative points for each genre and show to identify what StreamKUS should do and avoid.
         </p>
       </div>
     </div>
 
-    <div class="card report-copy">
+    <div class="card">
       <p>
         We collected the sentiment analysis of the collected text using Colab, and with Gemini 3.1 Flash-Lite Preview we used the following prompt:
       </p>
 
-      <div class="prompt-box">"당신은 영화/TV 평론가이자 데이터 분석가입니다. 전체 리뷰 중 {sample_size}개를 무작위로 추출한 데이터를 바탕으로 종합적인 리뷰 분석을 작성해 주세요. 요구사항: **주의사항: 모든 분석 결과와 응답값은 반드시 '한국어(Korean)'로 작성해 주세요.** 이 작품에 대한 사람들의 반응과 점수 분석 근거를 한국어로 명확하게 작성하세요. 긍정적 피드백, 부정적 피드백, 반복되는 주제를 배열 형태로 매우 상세하게 요약하세요. **중요**: 각 항목은 반드시 '**주제:** 설명' 형식으로 작성하세요. (예시: '**세계관의 확장:** 단순히 게임을 반복하는 것이 아니라...'). 샘플링된 리뷰들에서 가장 많이 언급된 핵심 키워드 상위 10개를 추출하고, 해당 키워드가 샘플 리뷰 내에서 대략 몇 번 언급되었는지 빈도수를 추정하여 포함하세요. 결론을 한국어로 작성하세요."</div>
+      <div class="prompt-box">"당신은 영화/TV 평론가이자 데이터 분석가입니다.전체 리뷰 중 {sample_size}개를 무작위로 추출한 데이터를 바탕으로 종합적인 리뷰 분석을 작성해 주세요.요구사항:**주의사항: 모든 분석 결과와 응답값은 반드시 '한국어(Korean)'로 작성해 주세요.**. 이 작품에 대한 사람들의 반응과 점수 분석 근거를 한국어로 명확하게 작성하세요. 긍정적 피드백, 부정적 피드백, 반복되는 주제를 배열 형태로 매우 상세하게 요약하세요. **중요**: 각 항목은 반드시 '**주제:** 설명' 형식으로 작성하세요. (예시: '**세계관의 확장:** 단순히 게임을 반복하는 것이 아니라...'). 샘플링된 리뷰들에서 가장 많이 언급된 핵심 키워드 상위 10개를 추출하고, 해당 키워드가 샘플 리뷰 내에서 대략 몇 번 언급되었는지 빈도수를 추정하여 포함하세요. 결론을 한국어로 작성하세요."</div>
 
       <p>
         The result printed the overall sentiment score out of 10, the frequency of each number, main positive and negative points, and the most frequently mentioned topics and keywords.
@@ -930,206 +828,294 @@
   </section>
 
   <section id="findings">
-    <p class="section-label">04 · Findings by Genre</p>
-    <h2>What Viewers Are Saying</h2>
-
-    <div class="genre-grid">
-      <div class="genre-card romance">
-        <div class="genre-dot">💗</div>
-        <p class="genre-sub">Genre 01</p>
-        <h3>Romance</h3>
-        <p>Romance viewers responded strongly to emotional immersion, relationship chemistry, sincerity, and curiosity about characters’ choices.</p>
-        <div class="placeholder-box">📊 시각화 / 차트 삽입 공간</div>
-      </div>
-
-      <div class="genre-card thriller">
-        <div class="genre-dot">🔍</div>
-        <p class="genre-sub">Genre 02</p>
-        <h3>Thriller / Crime</h3>
-        <p>Thriller and crime contents gained attention through suspense, survival tension, high-stakes situations, and unpredictable story development.</p>
-        <div class="placeholder-box">📊 시각화 / 차트 삽입 공간</div>
-      </div>
-
-      <div class="genre-card drama">
-        <div class="genre-dot">🎭</div>
-        <p class="genre-sub">Genre 03</p>
-        <h3>Human / Social Drama</h3>
-        <p>Human and social drama contents appealed to viewers through realism, empathy, social meaning, and emotionally relatable stories.</p>
-        <div class="placeholder-box">📊 시각화 / 차트 삽입 공간</div>
-      </div>
-
-      <div class="genre-card comedy">
-        <div class="genre-dot">😄</div>
-        <p class="genre-sub">Genre 04</p>
-        <h3>Comedy</h3>
-        <p>Comedy contents received strong reactions when viewers found the situations realistic, relatable, short, direct, and easy to share.</p>
-        <div class="placeholder-box">📊 시각화 / 차트 삽입 공간</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="evidence">
-    <p class="section-label">05 · Evidence from Data</p>
-    <h2>Key Data Highlights</h2>
+    <p class="section-label">04 · Findings</p>
+    <h2>What Viewers Responded To</h2>
 
     <div class="grid-2">
-      <div class="card evidence-card">
-        <span class="quote-mark">"</span>
-        <h3>Evidence 01</h3>
-        <div class="evidence-placeholder">
-          주요 데이터 근거나 인용할 시청자 반응 텍스트를 여기에 추가해주세요.
-        </div>
+      <div class="card finding-card romance">
+        <div class="finding-icon">💗</div>
+        <span class="target">Target: Women in their 10s, 20s, and 40s</span>
+        <h3>Romance</h3>
+        <p>
+          This genre appealed most to women in their 10s, 20s, and 40s. For dramas, a good cast, good characters, a touching storyline, and good videography were the positives that appeared most often. However, unnecessary scenes and an incomplete plot were frequently discussed as negative points.
+        </p>
+        <p>
+          For reality shows, the cast made the biggest difference, along with the chemistry between participants. Long scenes and poor editing were the main complaints.
+        </p>
       </div>
 
-      <div class="card evidence-card">
-        <span class="quote-mark">"</span>
-        <h3>Evidence 02</h3>
-        <div class="evidence-placeholder">
-          주요 데이터 근거나 인용할 시청자 반응 텍스트를 여기에 추가해주세요.
-        </div>
+      <div class="card finding-card slice">
+        <div class="finding-icon">🎭</div>
+        <span class="target">Target: Men 20s, 30s, 50+ / Women 40s</span>
+        <h3>Slice of Life</h3>
+        <p>
+          This genre appealed most to men in their 20s, 30s, and 50s or above, and women in their 40s. For dramas, a good plot, good characters, and a clear message were key positive factors. Unrealistic scenes were the main complaint.
+        </p>
+        <p>
+          For reality shows, educational aspects and touching scenes were the main positives. However, repetitive plots made some viewers feel bored. The main talking point was the message the content wanted to deliver.
+        </p>
       </div>
 
-      <div class="card evidence-card">
-        <span class="quote-mark">"</span>
-        <h3>Evidence 03</h3>
-        <div class="evidence-placeholder">
-          주요 데이터 근거나 인용할 시청자 반응 텍스트를 여기에 추가해주세요.
-        </div>
+      <div class="card finding-card thriller">
+        <div class="finding-icon">🔍</div>
+        <span class="target">Target: Men in their 10s, 20s, 40s, and 50+</span>
+        <h3>Thriller</h3>
+        <p>
+          This genre appealed most to men in their 10s, 20s, 40s, and 50s or above. A creative storyline, good acting, and strong videography were the most frequently mentioned positive points.
+        </p>
+        <p>
+          However, illogical story consistency and underwhelming endings were the main complaints. These shows were also often compared to their predecessors or other similar titles.
+        </p>
       </div>
 
-      <div class="card evidence-card">
-        <span class="quote-mark">"</span>
-        <h3>Evidence 04</h3>
-        <div class="evidence-placeholder">
-          주요 데이터 근거나 인용할 시청자 반응 텍스트를 여기에 추가해주세요.
-        </div>
+      <div class="card finding-card comedy">
+        <div class="finding-icon">😄</div>
+        <span class="target">Target: Men 40s, 50+ / Women 40s</span>
+        <h3>Comedy</h3>
+        <p>
+          This genre appealed most to men in their 40s and 50s or above, and women in their 40s. Easily understandable and relatable topics, along with social satire, made comedy shows more appealing.
+        </p>
+        <p>
+          However, unrealistic or exaggerated points, generalization, and too much political intent made these shows harder to watch. Comedy shows tended to have very mixed reviews, with various opinions coexisting.
+        </p>
       </div>
     </div>
   </section>
 
   <section id="proposals">
-    <p class="section-label">06 · Content Proposals</p>
-    <h2>Strategic Recommendations</h2>
+    <p class="section-label">05 · Content Proposals</p>
+    <h2>Strategic Recommendations for StreamKUS</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+
       <div class="card proposal-card">
         <div class="proposal-num">1</div>
         <div>
-          <h3>Romance Reality Drama</h3>
-          <p style="color:var(--ink-muted);font-size:15px;">
-            StreamKUS should create a romance content that emphasizes emotional immersion, sincere relationships, and visible chemistry between characters.
+          <h3>When The Seasons Stay <br><span style="color:var(--muted);font-size:16px;">우리의 계절은 아직</span></h3>
+
+          <div class="meta-list">
+            <span>Genre: Romance</span>
+            <span>Target: Women 10s, 20s, 40s</span>
+            <span>Format: 6-Part Netflix Series</span>
+          </div>
+
+          <p>
+            StreamKUS proposes “When the Seasons Stay” as its first original emotional romance and family healing drama series. The story follows people who reconnect with love, family, and forgotten relationships while navigating the emotional changes of adulthood.
           </p>
+
+          <p>
+            While many romance dramas focus mainly on excitement, confession, or dramatic heartbreak, this series explores the quieter emotions that remain afterward. Love is portrayed not as a perfect fantasy, but as something built slowly through understanding, forgiveness, sacrifice, and shared everyday moments.
+          </p>
+
+          <h4>Episodes</h4>
+          <ol class="episode-list">
+            <li><strong>Ep.1: The Place I Left Behind</strong> — Returning home and facing old memories</li>
+            <li><strong>Ep.2: Things We Never Said</strong> — Emotional distance within family</li>
+            <li><strong>Ep.3: That Rain That Day</strong> — Reuniting with a first love</li>
+            <li><strong>Ep.4: Dinner For Four</strong> — Family warmth hidden in everyday life</li>
+            <li><strong>Ep.5: After The Flowers Fall</strong> — Loss, regret, and emotional healing</li>
+            <li><strong>Ep.6: When The Seasons Stay</strong> — Accepting love, family, and moving forward</li>
+          </ol>
+
+          <div class="reason-box">
+            <p>
+              <strong>Reasons based on collected data:</strong> Text-mining analysis showed that viewers respond strongly to emotional humanism in Korean romance dramas. Keywords such as cried, love, family, and touching suggest that audiences value sincere stories about relationships, family bonds, healing, and meaningful human connections.
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="card proposal-card">
         <div class="proposal-num">2</div>
         <div>
-          <h3>Survival Thriller Series</h3>
-          <p style="color:var(--ink-muted);font-size:15px;">
-            Thriller content should include high tension, survival situations, and unpredictable conflicts while avoiding repetitive story structures.
+          <h3>The Second Golden Time <br><span style="color:var(--muted);font-size:16px;">두 번째 골든타임</span></h3>
+
+          <div class="meta-list">
+            <span>Genre: Slice of Life</span>
+            <span>Format: 6-Part Netflix Series + Short-Form Content</span>
+          </div>
+
+          <p>
+            “The Second Golden Time” is a human and social documentary drama that focuses on what happens after a patient survives an emergency. Each episode begins with an urgent medical case, but instead of ending with a successful surgery, the story follows the patient’s second crisis after survival: medical bills, lack of caregivers, trauma, unemployment, family conflict, and social isolation.
           </p>
+
+          <p>
+            The title refers to the crucial period after treatment, when a patient needs support to return to normal life. By focusing on this stage, the show can provide both tension and catharsis while delivering a realistic and empathetic social message.
+          </p>
+
+          <h4>Episodes</h4>
+          <ol class="episode-list">
+            <li><strong>Ep.1: Alive But Not</strong> — A lone elder has nowhere to go after discharge</li>
+            <li><strong>Ep.2: Discharge Faster Than Money</strong> — A delivery driver must return to work after an accident</li>
+            <li><strong>Ep.3: Lone Wolf</strong> — Successful surgery, but no one to help afterward</li>
+            <li><strong>Ep.4: Alive At What Cost</strong> — A family struggles to pay hospital bills</li>
+            <li><strong>Ep.5: Eerie at the ER</strong> — A deeper look into a misunderstood family member</li>
+            <li><strong>Ep.6: 72 Hours After Discharge</strong> — Following a patient after discharge and showing how healthcare and community support should connect</li>
+          </ol>
+
+          <div class="reason-box">
+            <p>
+              <strong>Reasons based on collected data:</strong> Viewers of The Trauma Code responded positively to fast pacing, charismatic characters, team chemistry, cathartic moments, and criticism of the medical system. However, some viewers criticized exaggerated scenes and unrealistic hero-like characters. This proposal keeps the strengths while focusing on more realistic problems after emergency treatment.
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="card proposal-card">
         <div class="proposal-num">3</div>
         <div>
-          <h3>Human Social Drama</h3>
-          <p style="color:var(--ink-muted);font-size:15px;">
-            Human and social drama should focus on empathy, realistic problems, and characters that reflect real-life emotions.
+          <h3>Dead Chamber <br><span style="color:var(--muted);font-size:16px;">죽음의 룰렛</span></h3>
+
+          <div class="meta-list">
+            <span>Genre: Thriller</span>
+            <span>Target: Men 10s, 20s, 40s, 50+</span>
+            <span>Format: 6-Part Netflix Series</span>
+          </div>
+
+          <p>
+            StreamKUS proposes “Dead Chamber” as its first original psychological survival thriller series. The story follows six strangers who are invited to participate in a mysterious roulette game where each spin determines life or death.
           </p>
+
+          <p>
+            While many survival thrillers focus mainly on violence and action, this series emphasizes psychological fear, human instinct, betrayal, and moral conflict. Suspense comes not only from deadly games but also from the emotional pressure created when ordinary people are forced to make impossible choices.
+          </p>
+
+          <h4>Episodes</h4>
+          <ol class="episode-list">
+            <li><strong>Ep.1: The Invitation</strong> — Six strangers enter a mysterious roulette game</li>
+            <li><strong>Ep.2: The First Spin</strong> — The players realize the game is deadly</li>
+            <li><strong>Ep.3: Trust No One</strong> — Alliances form while suspicion grows</li>
+            <li><strong>Ep.4: Loaded Chamber</strong> — Hidden rules are revealed</li>
+            <li><strong>Ep.5: The Last Bet</strong> — Betrayal destroys the remaining survivors</li>
+            <li><strong>Ep.6: Dead Chamber</strong> — The truth behind the game is uncovered</li>
+          </ol>
+
+          <div class="reason-box">
+            <p>
+              <strong>Reasons based on collected data:</strong> Survival thrillers such as Squid Game and Parasyte have attracted strong audience attention. Review analysis showed that keywords such as immersion, visual excitement, video quality, and CG appeared frequently in thriller discussions. This suggests that viewers value cinematic tension, high-quality visuals, and immersive survival mechanics.
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="card proposal-card">
         <div class="proposal-num">4</div>
         <div>
-          <h3>Short-Form Comedy Series</h3>
-          <p style="color:var(--ink-muted);font-size:15px;">
-            Comedy content should use everyday situations, fast pacing, and relatable humor that can spread easily on YouTube and social platforms.
+          <h3>We’re Not Done Yet <br><span style="color:var(--muted);font-size:16px;">우리 아직 안 끝났어</span></h3>
+
+          <div class="meta-list">
+            <span>Genre: Comedy</span>
+            <span>Target: 20s and 30s with high media usage</span>
+            <span>Format: YouTube + Netflix Expansion Potential</span>
+          </div>
+
+          <p>
+            This show follows a couple who got married after seven years of dating but run into realistic fights and laughter as newlyweds. Unlike shows that focus on dating, breakup, or marriage as the ending, this series focuses on life after marriage.
           </p>
+
+          <p>
+            The show is centered on everyday situations such as dates after marriage, housewarming, in-laws, money, work, and social life. These familiar situations are presented in a comedic way so that viewers can easily relate to them.
+          </p>
+
+          <h4>Episodes</h4>
+          <ol class="episode-list">
+            <li><strong>Ep.1: Do We Need Dates? We’re Married!</strong> — Boundaries between dating and marriage</li>
+            <li><strong>Ep.2: The Housewarming War</strong> — Friends, housewarming, and appearances</li>
+            <li><strong>Ep.3: Your Mother, Not Mine!</strong> — In-law problems</li>
+            <li><strong>Ep.4: Your Money? Our Money?</strong> — Money management problems</li>
+            <li><strong>Ep.5: You’re So Stuck In The Past</strong> — Repetitive talk about past experiences</li>
+            <li><strong>Ep.6: You’ve Got Company</strong> — Social life after marriage</li>
+          </ol>
+
+          <div class="reason-box">
+            <p>
+              <strong>Reasons based on collected data:</strong> YouTube comments and social media posts about Shortbox showed that viewers react strongly to relatable comedy based on everyday life. Keywords such as newlywed, military service, work, and marriage appeared often. Because some viewers also used negative words such as boring, repetitive, and stop, this proposal chooses the less common topic of life after marriage and leaves room for future episode topics to be decided through viewer comments.
+            </p>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <section id="limitations">
-    <p class="section-label">07 · Limitations</p>
+    <p class="section-label">06 · Limitations</p>
     <h2>Research Constraints</h2>
 
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div class="limit-item">
-        <div class="limit-icon">⚠️</div>
-        <div>
-          <strong>Limited data scope</strong>
-          <p style="color:var(--ink-muted);font-size:14px;margin-top:4px;">
-            The analysis was based on selected contents and comments, so the findings may not represent all viewers.
-          </p>
-        </div>
+    <div class="limit-item">
+      <div class="limit-icon">⚠️</div>
+      <div>
+        <h3>Limited Data Scope</h3>
+        <p>
+          The analysis was based on selected contents and available online comments, so the findings may not fully represent every viewer group.
+        </p>
       </div>
+    </div>
 
-      <div class="limit-item">
-        <div class="limit-icon">⚠️</div>
-        <div>
-          <strong>Platform bias</strong>
-          <p style="color:var(--ink-muted);font-size:14px;margin-top:4px;">
-            Viewer reactions may differ depending on the platform where comments were collected.
-          </p>
-        </div>
+    <div class="limit-item">
+      <div class="limit-icon">⚠️</div>
+      <div>
+        <h3>Platform Bias</h3>
+        <p>
+          Viewer reactions may differ depending on the platform. YouTube comments, Watchapedia reviews, Rotten Tomatoes reviews, and community posts may each reflect different user groups.
+        </p>
       </div>
+    </div>
 
-      <div class="limit-item">
-        <div class="limit-icon">⚠️</div>
-        <div>
-          <strong>Interpretation limits</strong>
-          <p style="color:var(--ink-muted);font-size:14px;margin-top:4px;">
-            Some reactions may include sarcasm or context-dependent meanings that are difficult to capture through simple keyword analysis.
-          </p>
-        </div>
+    <div class="limit-item">
+      <div class="limit-icon">⚠️</div>
+      <div>
+        <h3>Interpretation Limits</h3>
+        <p>
+          Some reactions may include sarcasm, exaggeration, or context-dependent meanings that are difficult to fully capture through text mining alone.
+        </p>
       </div>
     </div>
   </section>
 
   <section id="conclusion">
-    <p class="section-label">08 · Conclusion</p>
+    <p class="section-label">07 · Conclusion</p>
     <h2>Key Takeaways</h2>
 
     <div class="card conclusion-card">
       <p>
-        This project shows that viewer reactions can provide useful guidance for content planning. By comparing audience responses across romance, thriller/crime, human and social drama, and comedy, StreamKUS can design future content based on actual viewer interests rather than intuition alone.
+        This project analyzed viewer reactions to eight popular contents across four genre categories. The analysis showed that each genre appeals to audiences through different emotional and narrative elements. Romance content depends strongly on emotional immersion, chemistry, and sincere human relationships. Slice of life content works well when it delivers empathy, realism, education, and a clear social message. Thriller content attracts viewers through creative storylines, visual immersion, suspense, and strong production quality. Comedy content becomes effective when it uses relatable situations, everyday humor, and social satire while avoiding excessive exaggeration or repetition.
+      </p>
+
+      <p>
+        Based on these findings, StreamKUS should develop content that clearly delivers emotional value to viewers. The proposed ideas are an emotional romance drama, a realistic human and social drama, a psychological survival thriller, and a short-form comedy series with expansion potential. However, this analysis has limitations because the selected contents and data sources were limited. With more time, future research could collect more comments from additional platforms and compare audience reactions by age group, gender, country, and platform.
       </p>
     </div>
   </section>
 
   <section id="references">
-    <p class="section-label">09 · References</p>
+    <p class="section-label">08 · References</p>
     <h2>Sources & Citations</h2>
 
-    <div class="card" style="padding: 8px 20px;">
+    <div class="card">
       <div class="ref-item">
         <span class="ref-num">[1]</span>
-        <span>YouTube viewer comments collected for selected contents.</span>
+        <span>https://flixpatrol.com/</span>
       </div>
-
       <div class="ref-item">
         <span class="ref-num">[2]</span>
-        <span>Watchapedia user reviews collected for Korean audience reactions.</span>
+        <span>https://www.banronbodo.com/news/articleView.html?idxno=30518</span>
       </div>
-
       <div class="ref-item">
         <span class="ref-num">[3]</span>
-        <span>Rotten Tomatoes user reviews collected for English audience reactions.</span>
+        <span>https://www.banronbodo.com/news/articleView.html?idxno=30515</span>
       </div>
-
       <div class="ref-item">
         <span class="ref-num">[4]</span>
-        <span>Online community reactions from Nate and DCInside.</span>
+        <span>https://pedia.watcha.com/ko</span>
       </div>
-
       <div class="ref-item">
         <span class="ref-num">[5]</span>
-        <span>Text mining results produced with Colab, Codex, and Gemini 3.1 Flash-Lite Preview.</span>
+        <span>https://www.rottentomatoes.com/</span>
+      </div>
+      <div class="ref-item">
+        <span class="ref-num">[6]</span>
+        <span>https://colab.research.google.com/drive/116H4h0TPEySDIFW5DBKDdVyW8DWdSu9W</span>
       </div>
     </div>
   </section>
@@ -1144,27 +1130,27 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById("progress-bar").style.width = pct + "%";
   });
 
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("nav a");
 
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
+        navLinks.forEach(link => link.classList.remove("active"));
         const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
+        if (active) active.classList.add("active");
       }
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
+  }, { rootMargin: "-40% 0px -55% 0px" });
 
-  sections.forEach(sec => navObserver.observe(sec));
+  sections.forEach(section => navObserver.observe(section));
 </script>
 
 </body>
